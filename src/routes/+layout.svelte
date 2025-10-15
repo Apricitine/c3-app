@@ -1,41 +1,40 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
+  import favicon from "$lib/assets/favicon.svg"
+	import { links } from "$lib/routes"
 
-	let { children } = $props();
+  let { children } = $props()
 </script>
 
-
 <svelte:head>
-	<link rel="icon" href={favicon} />
-	<style>
-		body {
-			margin: 0;
-		}
-	</style>
+  <link rel="icon" href={favicon} />
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
 </svelte:head>
 
 <nav>
-	<a href="">ching</a>
-	<a href="">chong</a>
-	<a href="">chink</a>
-	<a href="">chonk</a>
+  {#each links as link}
+    <a href={link}>{`${link[0].toUpperCase()}${link.slice(1)}`}</a>
+  {/each}
 </nav>
 {@render children?.()}
 
 <style lang="scss">
-	nav {
-		display: flex;
-		width: 100vw;
-		height: 10vh;
-		background-color: rgb(156, 46, 46);
-		justify-content: space-around;
-		align-items: center;
-		
-		a {
-			color: white;
-			text-decoration: none;
-			font-weight: bold;
-			font-size: large;
-		}
-	}
+  nav {
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+    background-color: rgb(158, 4, 38);
+    justify-content: space-around;
+    align-items: center;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: large;
+    }
+  }
 </style>
