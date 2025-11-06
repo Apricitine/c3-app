@@ -2,7 +2,9 @@
   import favicon from "$lib/assets/favicon.svg"
   import { links } from "$lib/routes"
 
-  let { children } = $props()
+  let searchTerm = $state()
+
+  let { data } = $props()
 </script>
 
 <svelte:head>
@@ -26,7 +28,23 @@
     <a href={link}>{`${link[0].toUpperCase()}${link.slice(1)}`}</a>
   {/each}
 </nav>
-{@render children?.()}
+
+
+<main>
+  <input
+    type="search"
+    placeholder="search "
+    bind:value={searchTerm}
+  />
+  <div class="searchquery">
+    
+    
+    {data}
+
+
+  </div>
+</main>
+
 
 <style lang="scss">
   nav {
@@ -42,6 +60,30 @@
       text-decoration: none;
       font-weight: bold;
       font-size: large;
+    }
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    
+    input { 
+      width: 50vw;
+      height: 5vh;
+      font-family: "Nunito Sans", sans-serif;
+      font-size: large;
+      font-weight: bold;
+      text-decoration: none;
+      
+    }
+    div.searchquery {
+      width: 70vw;
+      height: 60vh;
+
+
+
     }
   }
 </style>
