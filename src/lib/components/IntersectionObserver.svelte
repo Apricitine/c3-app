@@ -8,11 +8,11 @@
 
     let isInView = false;
     let observer;
-    let element;
+    let element: Element;
 
     $: isInView, (isInViewProp = isInView);
 
-    const onChangeVisibility = (e) => {
+    const onChangeVisibility = (e: { isIntersecting: boolean; }[]) => {
         isInView = e[0].isIntersecting;
 
     }
