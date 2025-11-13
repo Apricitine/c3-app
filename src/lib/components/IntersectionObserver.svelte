@@ -8,7 +8,7 @@
 
     let isInView = false;
     let observer;
-    let element;
+    let element: Element;
 
     $: isInView, (isInViewProp = isInView);
 
