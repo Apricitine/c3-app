@@ -8,7 +8,7 @@
 
     let isInView = false;
     let observer;
-    let element: Element;
+    let element;
 
     $: isInView, (isInViewProp = isInView);
 
@@ -19,19 +19,15 @@
     
     
 
-    onMount(() => {
-        let options = {
-            root: root,
-        }
+  onMount(() => {
+    let options = {
+      root: root,
+    }
 
-    observer = new IntersectionObserver(onChangeVisibility, options);
-    observer.observe(element);
-
-    })
-
-
+    observer = new IntersectionObserver(onChangeVisibility, options)
+    observer.observe(element)
+  })
 </script>
-
 
 <div class="c" bind:this={element}>
   <slot {isInView} />

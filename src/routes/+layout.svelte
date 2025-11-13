@@ -1,7 +1,6 @@
 <script lang="ts">
   import favicon from "$lib/assets/favicon.svg"
   import { links } from "$lib/routes"
-  import visdetector from "$lib/components/Info.svelte"
 
   let searchTerm = $state()
 
@@ -37,12 +36,7 @@
     placeholder="search "
     bind:value={searchTerm}
   />
-  <div class="searchquery">
-    
-    {data}
-
-
-  </div>
+  <slot></slot>
 </main>
 
 
