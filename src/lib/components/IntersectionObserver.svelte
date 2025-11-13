@@ -1,37 +1,29 @@
 <script lang="ts">
+  import { onMount } from "svelte"
+  import { rollupVersion } from "vite"
 
-    import {onMount} from "svelte";
-    import { rollupVersion } from "vite";
+  export let root = undefined
+  export let isInViewProp = false
 
-    export let root = undefined;
-    export let isInViewProp = false;
+  let isInView = false
+  let observer
+  let element: Element
 
-    let isInView = false;
-    let observer;
-    let element;
+  $: isInView, (isInViewProp = isInView)
 
-    $: isInView, (isInViewProp = isInView);
+  const onChangeVisibility: IntersectionObserverCallback = (e) => {
+    isInView = e[0].isIntersecting
+  }
 
-    const onChangeVisibility = (e) => {
-        isInView = e[0].isIntersecting;
-
+  onMount(() => {
+    let options = {
+      root: root,
     }
-    
-    
 
-    onMount(() => {
-        let options = {
-            root: root,
-        }
-
-    observer = new IntersectionObserver(onChangeVisibility, options);
-    observer.observe(element);
-
-    })
-
-
+    observer = new IntersectionObserver(onChangeVisibility, options)
+    observer.observe(element)
+  })
 </script>
-
 
 <div class="c" bind:this={element}>
   <slot {isInView} />
